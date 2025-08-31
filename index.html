@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A História dos Seguros</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            @apply bg-gray-50 text-gray-800;
+        }
+        .container-card {
+            @apply max-w-4xl mx-auto p-6 md:p-10 my-8 bg-white rounded-xl shadow-lg transition-all duration-300 ease-in-out;
+        }
+        .section-title {
+            @apply text-3xl md:text-4xl font-bold text-center text-indigo-700 mb-6;
+        }
+        .section-subtitle {
+            @apply text-xl md:text-2xl font-semibold text-gray-700 mb-4;
+        }
+        .paragraph {
+            @apply text-gray-600 leading-relaxed mb-4;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="bg-indigo-600 text-white p-4 text-center shadow-lg">
+        <h1 class="text-2xl md:text-4xl font-bold tracking-wide">Descubra a Indústria de Seguros</h1>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <!-- History Section -->
+        <div class="container-card">
+            <h2 class="section-title">A História dos Seguros</h2>
+            <p class="paragraph text-center text-lg">
+                Uma jornada fascinante desde a antiguidade até os dias de hoje.
+            </p>
+
+            <div class="mt-8">
+                <h3 class="section-subtitle">Origens na Antiguidade</h3>
+                <p class="paragraph">
+                    As primeiras sementes da ideia de seguro foram plantadas há milhares de anos. Na Babilônia,
+                    comerciantes já utilizavam mecanismos para dividir os riscos, como o empréstimo com juros,
+                    onde a dívida era perdoada em caso de roubo da mercadoria. Isso mostra que a busca por
+                    segurança financeira contra imprevistos é uma necessidade humana muito antiga.
+                </p>
+
+                <h3 class="section-subtitle">A Revolução Marítima</h3>
+                <p class="paragraph">
+                    A ideia ganhou ainda mais força com o advento do comércio marítimo de longa distância.
+                    Comerciantes chineses, por exemplo, dividiam suas mercadorias em vários barcos para
+                    proteger-se da perda total em caso de naufrágio. Na Europa, as rotas marítimas perigosas
+                    levaram ao desenvolvimento dos primeiros contratos de seguro marítimo, que surgiram na
+                    Itália no século XIV e se popularizaram em centros comerciais como Londres.
+                </p>
+                <p class="paragraph">
+                    Esses contratos permitiam que o risco de uma viagem fosse assumido por seguradoras,
+                    mediante o pagamento de um prêmio, protegendo os mercadores de grandes perdas.
+                </p>
+
+                <h3 class="section-subtitle">O Seguro Moderno</h3>
+                <p class="paragraph">
+                    O seguro como conhecemos hoje começou a tomar forma após o Grande Incêndio de Londres em 1666,
+                    que destruiu a maior parte da cidade. O evento demonstrou a necessidade de um sistema organizado
+                    para proteger a propriedade contra catástrofes. Isso levou à criação das primeiras seguradoras
+                    de propriedade, que espalhavam o custo da reconstrução entre os proprietários, garantindo
+                    a recuperação de todos.
+                </p>
+            </div>
+        </div>
+
+        <!-- O que é Seguro Section -->
+        <div class="container-card">
+            <h2 class="section-title">O que é Seguro?</h2>
+            <p class="paragraph text-center text-lg">
+                É como um guarda-chuva: protege quando a tempestade chega.
+            </p>
+            <p class="paragraph">
+                Seguro é um contrato que garante proteção financeira em caso de imprevistos. Ele não evita que
+                os acidentes aconteçam, mas garante que os prejuízos não atrapalhem sua vida ou seus negócios.
+            </p>
+        </div>
+
+        <!-- Como Funciona Section -->
+        <div class="container-card">
+            <h2 class="section-title">Como Funciona</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="flex flex-col items-center p-6 bg-indigo-50 rounded-lg shadow-sm">
+                    <span class="text-4xl font-bold text-indigo-600 mb-2">1</span>
+                    <h3 class="font-semibold text-gray-700">Prêmio</h3>
+                    <p class="paragraph text-sm mt-1">Você paga um valor periódico à seguradora.</p>
+                </div>
+                <div class="flex flex-col items-center p-6 bg-indigo-50 rounded-lg shadow-sm">
+                    <span class="text-4xl font-bold text-indigo-600 mb-2">2</span>
+                    <h3 class="font-semibold text-gray-700">Cobertura</h3>
+                    <p class="paragraph text-sm mt-1">A seguradora assume os riscos contratados.</p>
+                </div>
+                <div class="flex flex-col items-center p-6 bg-indigo-50 rounded-lg shadow-sm">
+                    <span class="text-4xl font-bold text-indigo-600 mb-2">3</span>
+                    <h3 class="font-semibold text-gray-700">Indenização</h3>
+                    <p class="paragraph text-sm mt-1">Se o imprevisto ocorrer, você recebe a proteção financeira.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tipos de Seguros Section -->
+        <div class="container-card">
+            <h2 class="section-title">Principais Tipos de Seguros</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="p-4 bg-gray-100 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-gray-700 mb-1">Saúde</h3>
+                    <p class="paragraph text-sm">Consultas, exames, hospitais e planos médicos.</p>
+                </div>
+                <div class="p-4 bg-gray-100 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-gray-700 mb-1">Vida</h3>
+                    <p class="paragraph text-sm">Proteção financeira para a família em caso de falecimento.</p>
+                </div>
+                <div class="p-4 bg-gray-100 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-gray-700 mb-1">Automóvel</h3>
+                    <p class="paragraph text-sm">Batidas, roubo e assistência 24h.</p>
+                </div>
+                <div class="p-4 bg-gray-100 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-gray-700 mb-1">Residencial</h3>
+                    <p class="paragraph text-sm">Incêndio, enchente, e reparos emergenciais.</p>
+                </div>
+                <div class="p-4 bg-gray-100 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-gray-700 mb-1">Empresarial</h3>
+                    <p class="paragraph text-sm">Proteção contra perdas em negócios.</p>
+                </div>
+                <div class="p-4 bg-gray-100 rounded-lg shadow-sm">
+                    <h3 class="font-semibold text-gray-700 mb-1">Responsabilidade Civil</h3>
+                    <p class="paragraph text-sm">Cobre danos a terceiros.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-4 text-center mt-auto">
+        <p class="text-sm">Seguro não é gasto. É investimento em tranquilidade e proteção dos seus sonhos.</p>
+        <p class="text-xs mt-2 text-gray-400">&copy; 2025 Indústria de Seguros. Todos os direitos reservados.</p>
+    </footer>
