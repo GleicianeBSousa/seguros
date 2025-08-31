@@ -1,149 +1,577 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A História dos Seguros</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Explorador da Indústria de Seguros</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            @apply bg-gray-50 text-gray-800;
         }
-        .container-card {
-            @apply max-w-4xl mx-auto p-6 md:p-10 my-8 bg-white rounded-xl shadow-lg transition-all duration-300 ease-in-out;
+        .active-tab {
+            background-color: #0284c7;
+            color: #ffffff;
+            transform: scale(1.1);
         }
-        .section-title {
-            @apply text-3xl md:text-4xl font-bold text-center text-indigo-700 mb-6;
+        .tab-button {
+            transition: all 0.3s ease-in-out;
         }
-        .section-subtitle {
-            @apply text-xl md:text-2xl font-semibold text-gray-700 mb-4;
+        .content-fade-in {
+            animation: fadeIn 0.5s ease-in-out;
         }
-        .paragraph {
-            @apply text-gray-600 leading-relaxed mb-4;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .chat-bubble {
+            padding: 1rem;
+            border-radius: 1.5rem;
+            margin-bottom: 0.75rem;
+            max-width: 80%;
+        }
+        .bubble-atendente {
+            background-color: #e0f2fe;
+            color: #0c4a6e;
+            margin-left: auto;
+            border-bottom-right-radius: 0;
+        }
+        .bubble-cliente {
+            background-color: #f3f4f6;
+            color: #374151;
+            border-bottom-left-radius: 0;
+        }
+        .expandable-card {
+            transition: all 0.3s ease-in-out;
+        }
+        .expandable-card.open .rotate-icon {
+            transform: rotate(180deg);
         }
     </style>
 </head>
-<body class="flex flex-col min-h-screen">
-    <!-- Header -->
-    <header class="bg-indigo-600 text-white p-4 text-center shadow-lg">
-        <h1 class="text-2xl md:text-4xl font-bold tracking-wide">Descubra a Indústria de Seguros</h1>
-    </header>
+<body class="bg-stone-50 text-slate-800">
 
-    <!-- Main Content -->
-    <main class="flex-grow">
-        <!-- History Section -->
-        <div class="container-card">
-            <h2 class="section-title">A História dos Seguros</h2>
-            <p class="paragraph text-center text-lg">
-                Uma jornada fascinante desde a antiguidade até os dias de hoje.
-            </p>
+    <main class="container mx-auto px-4 py-8 md:py-12">
 
-            <div class="mt-8">
-                <h3 class="section-subtitle">Origens na Antiguidade</h3>
-                <p class="paragraph">
-                    As primeiras sementes da ideia de seguro foram plantadas há milhares de anos. Na Babilônia,
-                    comerciantes já utilizavam mecanismos para dividir os riscos, como o empréstimo com juros,
-                    onde a dívida era perdoada em caso de roubo da mercadoria. Isso mostra que a busca por
-                    segurança financeira contra imprevistos é uma necessidade humana muito antiga.
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-sky-800 mb-4">Descubra a Indústria de Seguros</h1>
+
+            <div class="container-card">
+                <h2 class="section-title">A História dos Seguros</h2>
+                <p class="paragraph text-center text-lg">
+                    Uma jornada fascinante desde a antiguidade até os dias de hoje.
                 </p>
-
-                <h3 class="section-subtitle">A Revolução Marítima</h3>
-                <p class="paragraph">
-                    A ideia ganhou ainda mais força com o advento do comércio marítimo de longa distância.
-                    Comerciantes chineses, por exemplo, dividiam suas mercadorias em vários barcos para
-                    proteger-se da perda total em caso de naufrágio. Na Europa, as rotas marítimas perigosas
-                    levaram ao desenvolvimento dos primeiros contratos de seguro marítimo, que surgiram na
-                    Itália no século XIV e se popularizaram em centros comerciais como Londres.
-                </p>
-                <p class="paragraph">
-                    Esses contratos permitiam que o risco de uma viagem fosse assumido por seguradoras,
-                    mediante o pagamento de um prêmio, protegendo os mercadores de grandes perdas.
-                </p>
-
-                <h3 class="section-subtitle">O Seguro Moderno</h3>
-                <p class="paragraph">
-                    O seguro como conhecemos hoje começou a tomar forma após o Grande Incêndio de Londres em 1666,
-                    que destruiu a maior parte da cidade. O evento demonstrou a necessidade de um sistema organizado
-                    para proteger a propriedade contra catástrofes. Isso levou à criação das primeiras seguradoras
-                    de propriedade, que espalhavam o custo da reconstrução entre os proprietários, garantindo
-                    a recuperação de todos.
-                </p>
-            </div>
-        </div>
-
-        <!-- O que é Seguro Section -->
-        <div class="container-card">
-            <h2 class="section-title">O que é Seguro?</h2>
-            <p class="paragraph text-center text-lg">
-                É como um guarda-chuva: protege quando a tempestade chega.
-            </p>
-            <p class="paragraph">
-                Seguro é um contrato que garante proteção financeira em caso de imprevistos. Ele não evita que
-                os acidentes aconteçam, mas garante que os prejuízos não atrapalhem sua vida ou seus negócios.
-            </p>
-        </div>
-
-        <!-- Como Funciona Section -->
-        <div class="container-card">
-            <h2 class="section-title">Como Funciona</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                <div class="flex flex-col items-center p-6 bg-indigo-50 rounded-lg shadow-sm">
-                    <span class="text-4xl font-bold text-indigo-600 mb-2">1</span>
-                    <h3 class="font-semibold text-gray-700">Prêmio</h3>
-                    <p class="paragraph text-sm mt-1">Você paga um valor periódico à seguradora.</p>
-                </div>
-                <div class="flex flex-col items-center p-6 bg-indigo-50 rounded-lg shadow-sm">
-                    <span class="text-4xl font-bold text-indigo-600 mb-2">2</span>
-                    <h3 class="font-semibold text-gray-700">Cobertura</h3>
-                    <p class="paragraph text-sm mt-1">A seguradora assume os riscos contratados.</p>
-                </div>
-                <div class="flex flex-col items-center p-6 bg-indigo-50 rounded-lg shadow-sm">
-                    <span class="text-4xl font-bold text-indigo-600 mb-2">3</span>
-                    <h3 class="font-semibold text-gray-700">Indenização</h3>
-                    <p class="paragraph text-sm mt-1">Se o imprevisto ocorrer, você recebe a proteção financeira.</p>
+    
+                <div class="mt-8">
+                    <h3 class="section-subtitle">Origens na Antiguidade</h3>
+                    <p class="paragraph">
+                        As primeiras sementes da ideia de seguro foram plantadas há milhares de anos. Na Babilônia,
+                        comerciantes já utilizavam mecanismos para dividir os riscos, como o empréstimo com juros,
+                        onde a dívida era perdoada em caso de roubo da mercadoria. Isso mostra que a busca por
+                        segurança financeira contra imprevistos é uma necessidade humana muito antiga.
+                    </p>
+    
+                    <h3 class="section-subtitle">A Revolução Marítima</h3>
+                    <p class="paragraph">
+                        A ideia ganhou ainda mais força com o advento do comércio marítimo de longa distância.
+                        Comerciantes chineses, por exemplo, dividiam suas mercadorias em vários barcos para
+                        proteger-se da perda total em caso de naufrágio. Na Europa, as rotas marítimas perigosas
+                        levaram ao desenvolvimento dos primeiros contratos de seguro marítimo, que surgiram na
+                        Itália no século XIV e se popularizaram em centros comerciais como Londres.
+                    </p>
+                    <p class="paragraph">
+                        Esses contratos permitiam que o risco de uma viagem fosse assumido por seguradoras,
+                        mediante o pagamento de um prêmio, protegendo os mercadores de grandes perdas.
+                    </p>
+    
+                    <h3 class="section-subtitle">O Seguro Moderno</h3>
+                    <p class="paragraph">
+                        O seguro como conhecemos hoje começou a tomar forma após o Grande Incêndio de Londres em 1666,
+                        que destruiu a maior parte da cidade. O evento demonstrou a necessidade de um sistema organizado
+                        para proteger a propriedade contra catástrofes. Isso levou à criação das primeiras seguradoras
+                        de propriedade, que espalhavam o custo da reconstrução entre os proprietários, garantindo
+                        a recuperação de todos.
+                    </p>
                 </div>
             </div>
-        </div>
+    
+            <!-- O que é Seguro Section -->
+            <div class="container-card">
+                <h2 class="section-title">O que é Seguro?</h2>
+                <p class="paragraph text-center text-lg">
+                    É como um guarda-chuva: protege quando a tempestade chega.
+                </p>
+                <p class="paragraph">
+                    Seguro é um contrato que garante proteção financeira em caso de imprevistos. Ele não evita que
+                    os acidentes aconteçam, mas garante que os prejuízos não atrapalhem sua vida ou seus negócios.
+                </p>
+            </div>
 
-        <!-- Tipos de Seguros Section -->
-        <div class="container-card">
-            <h2 class="section-title">Principais Tipos de Seguros</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="p-4 bg-gray-100 rounded-lg shadow-sm">
-                    <h3 class="font-semibold text-gray-700 mb-1">Saúde</h3>
-                    <p class="paragraph text-sm">Consultas, exames, hospitais e planos médicos.</p>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">Uma jornada interativa para entender como o seguro protege pessoas, famílias e empresas de forma simples e eficaz.</p>
+        </header>
+
+        <section id="what-is" class="mb-20">
+            <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 text-center">
+                <h2 class="text-3xl font-bold text-sky-700 mb-4">Afinal, o que é Seguro?</h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                    Pense no seguro como um <span class="font-semibold text-sky-600">cinto de segurança</span> ou um <span class="font-semibold text-sky-600">guarda-chuva</span>. Você o tem na esperança de não precisar usar, mas ele está lá para proteger você e seus bens quando uma tempestade inesperada chega. Ele transforma riscos e incertezas em tranquilidade.
+                </p>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-10 text-sky-700">Como Funciona o Ciclo de Proteção</h2>
+             <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-4xl mb-4">1️⃣</div>
+                    <h3 class="text-2xl font-semibold mb-2 text-sky-800">Prêmio</h3>
+                    <p class="text-slate-600">Você paga um valor periódico (mensal ou anual) à seguradora para manter sua proteção ativa.</p>
                 </div>
-                <div class="p-4 bg-gray-100 rounded-lg shadow-sm">
-                    <h3 class="font-semibold text-gray-700 mb-1">Vida</h3>
-                    <p class="paragraph text-sm">Proteção financeira para a família em caso de falecimento.</p>
+                <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 transform hover:scale-105 transition-transform duration-300">
+                     <div class="text-4xl mb-4">2️⃣</div>
+                    <h3 class="text-2xl font-semibold mb-2 text-sky-800">Cobertura</h3>
+                    <p class="text-slate-600">A seguradora assume os riscos definidos no contrato, garantindo a cobertura para os imprevistos.</p>
                 </div>
-                <div class="p-4 bg-gray-100 rounded-lg shadow-sm">
-                    <h3 class="font-semibold text-gray-700 mb-1">Automóvel</h3>
-                    <p class="paragraph text-sm">Batidas, roubo e assistência 24h.</p>
-                </div>
-                <div class="p-4 bg-gray-100 rounded-lg shadow-sm">
-                    <h3 class="font-semibold text-gray-700 mb-1">Residencial</h3>
-                    <p class="paragraph text-sm">Incêndio, enchente, e reparos emergenciais.</p>
-                </div>
-                <div class="p-4 bg-gray-100 rounded-lg shadow-sm">
-                    <h3 class="font-semibold text-gray-700 mb-1">Empresarial</h3>
-                    <p class="paragraph text-sm">Proteção contra perdas em negócios.</p>
-                </div>
-                <div class="p-4 bg-gray-100 rounded-lg shadow-sm">
-                    <h3 class="font-semibold text-gray-700 mb-1">Responsabilidade Civil</h3>
-                    <p class="paragraph text-sm">Cobre danos a terceiros.</p>
+                <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 transform hover:scale-105 transition-transform duration-300">
+                     <div class="text-4xl mb-4">3️⃣</div>
+                    <h3 class="text-2xl font-semibold mb-2 text-sky-800">Indenização</h3>
+                    <p class="text-slate-600">Se um dos imprevistos cobertos acontecer, você recebe a proteção financeira para reparar as perdas.</p>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <section id="impact" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-10 text-sky-700">O Impacto do Seguro no Brasil</h2>
+            <p class="text-lg text-slate-600 text-center max-w-3xl mx-auto mb-12">
+                Mais do que uma proteção individual, a indústria de seguros é um pilar fundamental para a economia e a estabilidade social do país, gerando empregos, movimentando a economia e dando segurança para que a sociedade continue a progredir.
+            </p>
+            <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
+                <div class="chart-container">
+                    <canvas id="impactChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="types" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-4 text-sky-700">Explore os Tipos de Seguro</h2>
+            <p class="text-lg text-slate-600 text-center max-w-3xl mx-auto mb-10">
+                Existem diversas modalidades de seguro, cada uma desenhada para proteger uma área específica da sua vida ou do seu negócio. Clique nos ícones abaixo para descobrir mais sobre os principais tipos e ver exemplos práticos de como eles funcionam.
+            </p>
+
+            <div id="insurance-tabs" class="flex flex-wrap justify-center gap-3 md:gap-4 mb-8">
+                <button data-type="saude" class="tab-button flex items-center justify-center w-20 h-20 md:w-24 md:h-24 bg-white rounded-full shadow-md hover:bg-sky-100 active-tab">
+                    <span class="text-3xl md:text-4xl">🏥</span>
+                </button>
+                <button data-type="vida" class="tab-button flex items-center justify-center w-20 h-20 md:w-24 md:h-24 bg-white rounded-full shadow-md hover:bg-sky-100">
+                    <span class="text-3xl md:text-4xl">👨‍👩‍👧‍👦</span>
+                </button>
+                <button data-type="auto" class="tab-button flex items-center justify-center w-20 h-20 md:w-24 md:h-24 bg-white rounded-full shadow-md hover:bg-sky-100">
+                    <span class="text-3xl md:text-4xl">🚗</span>
+                </button>
+                <button data-type="residencial" class="tab-button flex items-center justify-center w-20 h-20 md:w-24 md:h-24 bg-white rounded-full shadow-md hover:bg-sky-100">
+                    <span class="text-3xl md:text-4xl">🏠</span>
+                </button>
+                <button data-type="empresarial" class="tab-button flex items-center justify-center w-20 h-20 md:w-24 md:h-24 bg-white rounded-full shadow-md hover:bg-sky-100">
+                    <span class="text-3xl md:text-4xl">🏢</span>
+                </button>
+                <button data-type="civil" class="tab-button flex items-center justify-center w-20 h-20 md:w-24 md:h-24 bg-white rounded-full shadow-md hover:bg-sky-100">
+                    <span class="text-3xl md:text-4xl">⚖️</span>
+                </button>
+            </div>
+
+            <div id="insurance-content" class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 min-h-[20rem]">
+            </div>
+        </section>
+
+        <section id="dialogues" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-4 text-sky-700">Diálogos de Vendas e Objeções</h2>
+            <p class="text-lg text-slate-600 text-center max-w-3xl mx-auto mb-10">
+                Veja como explicar cada tipo de seguro e responder a dúvidas comuns em uma conversa real. Clique nos ícones para simular o diálogo.
+            </p>
+
+            <div id="dialogue-tabs" class="flex flex-wrap justify-center gap-3 md:gap-4 mb-8">
+                <button data-type="saude" class="dialogue-tab-button flex items-center justify-center w-20 h-20 md:w-24 md:h-24 bg-white rounded-full shadow-md hover:bg-sky-100 active-tab">
+                    <span class="text-3xl md:text-4xl">🏥</span>
+                </button>
+                <button data-type="vida" class="dialogue-tab-button flex items-center justify-center w-20 h-20 md:w-24 md:h-24 bg-white rounded-full shadow-md hover:bg-sky-100">
+                    <span class="text-3xl md:text-4xl">👨‍👩‍👧‍👦</span>
+                </button>
+                <button data-type="auto" class="dialogue-tab-button flex items-center justify-center w-20 h-20 md:w-24 md:h-24 bg-white rounded-full shadow-md hover:bg-sky-100">
+                    <span class="text-3xl md:text-4xl">🚗</span>
+                </button>
+                <button data-type="residencial" class="dialogue-tab-button flex items-center justify-center w-20 h-20 md:w-24 md:h-24 bg-white rounded-full shadow-md hover:bg-sky-100">
+                    <span class="text-3xl md:text-4xl">🏠</span>
+                </button>
+                <button data-type="empresarial" class="dialogue-tab-button flex items-center justify-center w-20 h-20 md:w-24 md:h-24 bg-white rounded-full shadow-md hover:bg-sky-100">
+                    <span class="text-3xl md:text-4xl">🏢</span>
+                </button>
+                <button data-type="civil" class="dialogue-tab-button flex items-center justify-center w-20 h-20 md:w-24 md:h-24 bg-white rounded-full shadow-md hover:bg-sky-100">
+                    <span class="text-3xl md:text-4xl">⚖️</span>
+                </button>
+            </div>
+
+            <div id="dialogue-content" class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 min-h-[30rem] overflow-y-auto">
+            </div>
+        </section>
+
+        <section id="micro-seguros" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-4 text-sky-700">Nossos Microseguros</h2>
+            <p class="text-lg text-slate-600 text-center max-w-3xl mx-auto mb-10">
+                Conheça nossos planos de seguros e assistências com coberturas e preços acessíveis. Clique nos cartões para ver os detalhes completos de cada produto.
+            </p>
+            <div id="micro-insurance-cards" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+        </section>
+
+        <section id="why" class="text-center bg-sky-700 text-white p-10 rounded-2xl">
+             <h2 class="text-3xl font-bold mb-4">Por que o Seguro Existe?</h2>
+            <p class="text-lg max-w-3xl mx-auto mb-6">
+                Porque a vida é imprevisível. Ninguém planeja um acidente, uma doença ou um imprevisto em seu negócio. O seguro existe para transformar essa incerteza em tranquilidade, oferecendo uma rede de segurança que permite que famílias e empresas sigam em frente, mesmo diante das adversidades.
+            </p>
+            <p class="text-xl font-semibold bg-sky-800/50 px-4 py-2 rounded-lg inline-block">
+                Seguro não é um gasto. É um investimento na proteção dos seus sonhos.
+            </p>
+        </section>
+
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white p-4 text-center mt-auto">
+    <footer class="text-center py-6 bg-slate-100">
         <p class="text-sm">Seguro não é gasto. É investimento em tranquilidade e proteção dos seus sonhos.</p>
-        <p class="text-xs mt-2 text-gray-400">&copy; 2025 Indústria de Seguros. Todos os direitos reservados.</p>
+        <p class="text-xs mt-2 text-gray-400">&copy; 2025 Indústria de Seguros.</p>
+        <p class="text-slate-500">Material interativo desenvolvido por Gleiciane Batista de Sousa.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const insuranceData = {
+                saude: {
+                    title: 'Seguro Saúde',
+                    description: 'Cobre consultas, exames, internações e outros procedimentos médicos. É um investimento fundamental no seu bem-estar e na sua qualidade de vida.',
+                    example: '<strong>Exemplo Prático:</strong> Uma pessoa precisa realizar uma cirurgia de emergência. Com o seguro saúde, o plano cobre os custos do hospital, honorários médicos e exames, evitando uma despesa inesperada que poderia comprometer suas finanças.',
+                    dialogue: [
+                        { role: 'atendente', text: 'Bom dia! Gostaria de conversar sobre a importância de ter um plano de saúde para sua família. Ele garante acesso rápido e de qualidade a médicos e hospitais.' },
+                        { role: 'cliente', text: 'Ah, mas meu trabalho já oferece um convênio. Não preciso de outro seguro.' },
+                        { role: 'atendente', text: 'Essa é uma ótima base! No entanto, o plano de saúde individual oferece mais flexibilidade e personalização. Ele pode cobrir tratamentos que o plano da empresa não cobre, e você não o perde se mudar de emprego. É uma proteção contínua para sua saúde.' }
+                    ]
+                },
+                vida: {
+                    title: 'Seguro de Vida',
+                    description: 'Oferece proteção financeira para sua família ou dependentes em caso de falecimento, invalidez ou doenças graves. É uma forma de garantir o futuro de quem você ama.',
+                    example: '<strong>Exemplo Prático:</strong> Um pai de família vem a falecer. A indenização do seguro de vida permite que a família mantenha seu padrão de vida, pague a escola dos filhos e se reorganize financeiramente durante um período difícil.',
+                    dialogue: [
+                        { role: 'atendente', text: 'Você já pensou em como a sua ausência poderia impactar financeiramente a sua família? O seguro de vida é uma forma de garantir que eles fiquem seguros.' },
+                        { role: 'cliente', text: 'Eu sou novo e saudável. Acho que é um gasto desnecessário no momento.' },
+                        { role: 'atendente', text: 'Entendo, mas a saúde é imprevisível. O seguro de vida é mais acessível quando somos jovens e saudáveis. Além de proteger sua família, algumas apólices oferecem cobertura para doenças graves ou invalidez, garantindo seu próprio futuro. É um investimento que se valoriza com o tempo.' }
+                    ]
+                },
+                auto: {
+                    title: 'Seguro Automóvel',
+                    description: 'Protege seu veículo contra colisões, roubo, furto e incêndio. Também oferece serviços de assistência 24h, como guincho e chaveiro.',
+                    example: '<strong>Exemplo Prático:</strong> Um motorista se envolve em uma colisão. O seguro cobre os reparos do seu veículo e também os danos causados ao carro do terceiro, além de oferecer um guincho para levar o carro à oficina.',
+                    dialogue: [
+                        { role: 'atendente', text: 'Proteger seu carro é essencial, e o seguro vai muito além de apenas cobrir roubo ou batida. Ele te dá tranquilidade em qualquer situação.' },
+                        { role: 'cliente', text: 'Eu sou um motorista cuidadoso e nunca sofri um acidente. Acho que não preciso disso.' },
+                        { role: 'atendente', text: 'Dirigir com cuidado é ótimo, mas acidentes podem envolver outros motoristas. O seguro cobre danos a terceiros, evitando que você precise pagar do seu bolso por um reparo que pode custar milhares de reais. É uma proteção para você e para o seu bolso, mesmo quando a culpa não é sua.' }
+                    ]
+                },
+                residencial: {
+                    title: 'Seguro Residencial',
+                    description: 'Cobre danos à sua casa causados por incêndio, roubo, inundações e oferece assistências para reparos emergenciais, como eletricista e encanador.',
+                    example: '<strong>Exemplo Prático:</strong> Um cano estoura na cozinha, causando um alagamento. O seguro residencial cobre os custos dos reparos hidráulicos, a mão de obra e até a substituição de móveis danificados, conforme a apólice.',
+                    dialogue: [
+                        { role: 'atendente', text: 'Você sabia que o seguro residencial oferece uma proteção completa para a sua casa e pode custar menos que uma pizza por mês?' },
+                        { role: 'cliente', text: 'Minha casa é nova, não preciso me preocupar com vazamentos ou incêndios.' },
+                        { role: 'atendente', text: 'É verdade, mas imprevistos acontecem. O seguro protege contra desastres naturais, roubos e até quedas de raios que podem queimar seus eletrodomésticos. Além disso, as assistências 24h incluem serviços de eletricista e encanador que você pode usar a qualquer momento, mesmo sem um sinistro. É uma tranquilidade para o dia a dia.' }
+                    ]
+                },
+                empresarial: {
+                    title: 'Seguro Empresarial',
+                    description: 'Protege a empresa contra perdas e danos ao patrimônio, como prédio, equipamentos e estoque. Garante a continuidade do negócio após um imprevisto.',
+                    example: '<strong>Exemplo Prático:</strong> Um curto-circuito causa um incêndio em uma loja. O seguro empresarial cobre os prejuízos com mercadorias e a reforma do local, além de poder cobrir o faturamento perdido durante o período de inatividade.',
+                    dialogue: [
+                        { role: 'atendente', text: 'Você construiu seu negócio com muito esforço. O seguro empresarial é a maneira de proteger esse investimento e garantir que ele continue crescendo, mesmo diante de um problema.' },
+                        { role: 'cliente', text: 'Eu tenho um fundo de emergência. Acredito que consigo cobrir qualquer perda.' },
+                        { role: 'atendente', text: 'Um fundo de emergência é essencial, mas pode não ser suficiente para um evento de grande escala, como um incêndio ou desastre natural. O seguro transfere esse risco para a seguradora, protegendo seu capital de giro e evitando que você precise fechar as portas. Ele garante a continuidade do seu negócio, algo que o dinheiro do fundo não pode garantir sozinho.' }
+                    ]
+                },
+                civil: {
+                    title: 'Seguro de Responsabilidade Civil',
+                    description: 'Cobre os custos de reparação por danos materiais ou corporais causados involuntariamente a terceiros. Essencial para profissionais liberais e empresas.',
+                    example: '<strong>Exemplo Prático:</strong> Um arquiteto comete um erro no projeto que causa uma rachadura na parede de um cliente. O seguro de RC Profissional cobre as despesas judiciais e a indenização para o reparo do dano.',
+                    dialogue: [
+                        { role: 'atendente', text: 'Seu trabalho é sua reputação. O seguro de Responsabilidade Civil protege você e seu patrimônio caso você cause um dano a um cliente, mesmo sem querer.' },
+                        { role: 'cliente', text: 'Eu sou muito cuidadoso. Meus clientes confiam em mim.' },
+                        { role: 'atendente', text: 'A confiança é a base do seu negócio, mas um simples erro de cálculo ou um acidente podem acontecer. Esse seguro é uma rede de segurança legal e financeira. Ele não apenas cobre as indenizações, mas também as despesas com advogados, garantindo que sua reputação e seu patrimônio fiquem intactos. É uma proteção essencial para a sua carreira.' }
+                    ]
+                }
+            };
+
+            const microInsuranceData = [
+                {
+                    name: "Assistência Auto Básico",
+                    target: "Ideal para motoristas que buscam assistência rápida e eficiente em caso de emergências com o carro.",
+                    caracteristics: "Oferece serviços como Guincho/reboque (100km), socorro mecânico, chaveiro, troca de pneus.",
+                    contact: "0800 770 0392 OU app.europ.com.br/SemParar/",
+                    seguradora: "Europ Assistance",
+                    prazo: "30 Dias"
+                },
+                {
+                    name: "Assistência Auto Plus",
+                    target: "Ideal para motoristas que buscam assistência rápida e eficiente em caso de emergências com o carro.",
+                    caracteristics: "Oferece serviços como Guincho/reboque (200km), socorro mecânico, chaveiro, troca de pneus.",
+                    contact: "0800 770 0392 OU app.europ.com.br/SemParar/",
+                    seguradora: "Europ Assistance",
+                    prazo: "30 Dias"
+                },
+                {
+                    name: "Proteção Auto Básico",
+                    target: "Para quem busca proteção e manutenção do carro, como assistência a vidros, farol, lanterna e retrovisor.",
+                    caracteristics: "Inclui higienização de ar condicionado.",
+                    contact: "0800 777 2117",
+                    seguradora: "Autoglass",
+                    prazo: "30 Dias"
+                },
+                {
+                    name: "Proteção Auto Plus",
+                    target: "Para quem busca proteção e manutenção do carro.",
+                    caracteristics: "Cobre vidros, farol, lanterna e retrovisor, higienização de ar condicionado e, a depender do plano, reparo de lataria e pintura.",
+                    contact: "0800 777 2117",
+                    seguradora: "Autoglass",
+                    prazo: "30 Dias"
+                },
+                {
+                    name: "Seguro Auto Diário",
+                    target: "Para motoristas que buscam proteção por 24h, após ativação na cancela do pedágio.",
+                    caracteristics: "Cobre danos causados por acidentes, como batida, queda de precipícios ou pontes, inundações, danos causados por fenômenos da natureza, entre outros. Reembolso de franquia ou cobertura para danos parciais.",
+                    contact: "0800 000 2986 Ou link: Clique aqui!",
+                    seguradora: "Kovr",
+                    prazo: "Sem Carência"
+                },
+                {
+                    name: "Seguro Auto Flex",
+                    target: "Para motoristas que buscam proteção para danos aos carros em qualquer lugar do Brasil.",
+                    caracteristics: "Cobre danos causados por acidentes, como batida, queda de precipícios ou pontes, inundações, danos causados por fenômenos da natureza, entre outros. Reembolso de franquia ou cobertura para danos parciais.",
+                    contact: "0800 000 2986",
+                    seguradora: "Kovr",
+                    prazo: "15 Dias"
+                },
+                {
+                    name: "Seguro Auto Estrada / Auto Flex Tag",
+                    target: "Para danos ao carro ocorridos em rodovia ou estacionamento após uso da tag Sem Parar.",
+                    caracteristics: "Cobre danos parciais causados por acidentes, como batida, queda de precipícios ou pontes, inundações, danos causados por fenômenos da natureza, entre outros. Reembolso de franquia ou cobertura para danos parciais.",
+                    contact: "0800 000 2986 Ou link: Clique aqui!",
+                    seguradora: "Kovr",
+                    prazo: "De 15 a 30 dias"
+                },
+                {
+                    name: "Proteção Financeira",
+                    target: "Para o titular. Ideal para quem busca proteção contra perdas e danos resultantes de roubo ou furto qualificado de itens pessoais.",
+                    caracteristics: "Desde que o cartão de crédito segurado tenha sido furtado também.",
+                    contact: "0800 778 2052",
+                    seguradora: "Ezze Seguros",
+                    prazo: "60 Dias"
+                },
+                {
+                    name: "Proteção Pessoal",
+                    target: "Ideal para quem quer um seguro de vida que protege o titular e passageiros em acidentes ocorridos dentro do carro cadastrado no Sem Parar.",
+                    caracteristics: "Ainda conta com assistência odontológica e recolocação profissional, que pode ser usada após 30 dias da contratação.",
+                    contact: "0800 638 5433",
+                    seguradora: "MetLife",
+                    prazo: "24H"
+                },
+                {
+                    name: "Seguro Viagem",
+                    target: "Ideal para os buscam proteção abrangente durante suas viagens a partir de 70km de distância da residência cadastrada.",
+                    caracteristics: "Oferece cobertura para perda de bagagem, atraso de voo, despesas médicas, hospitalares e odontológicas, entre outros.",
+                    contact: "0800 591 2728; WhatsApp: 11 30426062",
+                    seguradora: "Kovr",
+                    prazo: "24H"
+                }
+            ];
+            
+            const tabsContainer = document.getElementById('insurance-tabs');
+            const contentContainer = document.getElementById('insurance-content');
+            const dialogueTabsContainer = document.getElementById('dialogue-tabs');
+            const dialogueContentContainer = document.getElementById('dialogue-content');
+            const microInsuranceCardsContainer = document.getElementById('micro-insurance-cards');
+            const tabs = tabsContainer.querySelectorAll('.tab-button');
+            const dialogueTabs = dialogueTabsContainer.querySelectorAll('.dialogue-tab-button');
+            
+            function updateContent(type) {
+                const content = insuranceData[type];
+                if (content) {
+                    contentContainer.innerHTML = `
+                        <div class="content-fade-in">
+                            <h3 class="text-2xl md:text-3xl font-bold text-sky-700 mb-4">${content.title}</h3>
+                            <p class="text-lg text-slate-600 mb-4">${content.description}</p>
+                            <div class="bg-sky-50 p-4 rounded-lg border-l-4 border-sky-500">
+                                <p class="text-slate-700">${content.example}</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            
+            function updateDialogueContent(type) {
+                const dialogue = insuranceData[type].dialogue;
+                dialogueContentContainer.innerHTML = '';
+                dialogue.forEach(chat => {
+                    const chatDiv = document.createElement('div');
+                    chatDiv.classList.add('chat-bubble', chat.role === 'atendente' ? 'bubble-atendente' : 'bubble-cliente');
+                    chatDiv.textContent = chat.text;
+                    dialogueContentContainer.appendChild(chatDiv);
+                });
+                dialogueContentContainer.classList.add('content-fade-in');
+            }
+            
+            function renderMicroInsuranceCards() {
+                microInsuranceData.forEach((product, index) => {
+                    const card = document.createElement('div');
+                    card.classList.add('expandable-card', 'bg-white', 'p-6', 'rounded-2xl', 'shadow-lg', 'border', 'border-slate-100', 'cursor-pointer');
+                    card.innerHTML = `
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-sky-800">${product.name}</h3>
+                            <span class="rotate-icon text-sky-600 transition-transform duration-300">▼</span>
+                        </div>
+                        <div class="details-content overflow-hidden max-h-0 transition-all duration-500">
+                            <p class="text-slate-600 mb-2"><strong>Pra quem é?</strong> ${product.target}</p>
+                            <p class="text-slate-600 mb-2"><strong>Características:</strong> ${product.caracteristics}</p>
+                            <p class="text-slate-600 mb-2"><strong>Prazo de Carência:</strong> ${product.prazo}</p>
+                            <p class="text-slate-600 mb-2"><strong>Contato:</strong> <span class="text-sky-600">${product.contact}</span></p>
+                            <p class="text-slate-600"><strong>Seguradora:</strong> ${product.seguradora}</p>
+                        </div>
+                    `;
+                    card.addEventListener('click', () => {
+                        const content = card.querySelector('.details-content');
+                        if (card.classList.contains('open')) {
+                            card.classList.remove('open');
+                            content.style.maxHeight = '0';
+                        } else {
+                            card.classList.add('open');
+                            content.style.maxHeight = content.scrollHeight + 'px';
+                        }
+                    });
+                    microInsuranceCardsContainer.appendChild(card);
+                });
+            }
+            
+            tabsContainer.addEventListener('click', (e) => {
+                const button = e.target.closest('.tab-button');
+                if (button) {
+                    const type = button.dataset.type;
+                    tabs.forEach(tab => tab.classList.remove('active-tab'));
+                    button.classList.add('active-tab');
+                    updateContent(type);
+                }
+            });
+            
+            dialogueTabsContainer.addEventListener('click', (e) => {
+                const button = e.target.closest('.dialogue-tab-button');
+                if (button) {
+                    const type = button.dataset.type;
+                    dialogueTabs.forEach(tab => tab.classList.remove('active-tab'));
+                    button.classList.add('active-tab');
+                    updateDialogueContent(type);
+                }
+            });
+            
+            updateContent('saude');
+            updateDialogueContent('saude');
+            renderMicroInsuranceCards();
+            
+            const ctx = document.getElementById('impactChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Geração de Empregos', 'Movimento da Economia', 'Segurança para a Sociedade'],
+                    datasets: [{
+                        label: 'Nível de Impacto',
+                        data: [85, 100, 95],
+                        backgroundColor: [
+                            'rgba(56, 189, 248, 0.6)',
+                            'rgba(14, 165, 233, 0.6)',
+                            'rgba(2, 132, 199, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgb(56, 189, 248)',
+                            'rgb(14, 165, 233)',
+                            'rgb(2, 132, 199)'
+                        ],
+                        borderWidth: 2,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            display: false
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                             ticks: {
+                                font: {
+                                    size: 14,
+                                    weight: '600'
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: '#0c4a6e',
+                            titleFont: {
+                                size: 16,
+                                weight: 'bold'
+                            },
+                            bodyFont: {
+                                size: 14
+                            },
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
